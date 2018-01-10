@@ -4,10 +4,13 @@ var Usuario = {
         return db.query("Select * from usuario", callback);
     },
     getUsuarioById: function (id, callback) {
-        return db.query("select * from usuario where Id=?", [id], callback);
+        return db.query("select * from usuario where IdUsuario=?", [id], callback);
     },
     addUsuario: function (User, callback) {
-        return db.query("Insert into usuario values(?,?,?)", [User.Id, User.Title, User.Status], callback);
+        return db.query('Insert into usuario(IdUsuario,Nombre,Apellido,Correo,Password,Telefono,Estado,Activo,DescripcionTransaccion,TipoTransaccion,ModificadoPor) values(?,?,?,?,?,?,?,?,?,?,?)',
+            [User.IdUsuario, User.Nombre, User.Apellido, User.Correo, User.Password, 
+                User.Telefono, User.Estado, User.Activo, 
+                User.DescripcionTransaccion, User.TipoTransaccion, User.ModificadoPor], callback);
     },
     deleteUsuario: function (id, callback) {
         return db.query("delete from usuariro where Id=?", [id], callback);
